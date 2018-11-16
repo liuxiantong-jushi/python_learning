@@ -1,0 +1,5 @@
+print("==================================================")
+print("hello world!")
+print("this is my first python program coded on mac")
+print("mac is amazing for coder")
+print("==================================================")
