@@ -83,7 +83,8 @@ def get_context(op, expr_list):
 
 
 def is_op(e):
-    if e.value == '+' or e.value == '-' or e.value == '*' or e.value == '/' or e.value == '^' or e.value == 'L' or e.value == 'S':
+    if e.value == '+' or e.value == '-' or e.value == '*' or e.value == '/' \
+            or e.value == '^' or e.value == 'L' or e.value == 'S':
         return True
     return False
 
@@ -97,7 +98,8 @@ def can_cal(e, context):
 def is_prior(op, expr_list):
     if op.value == '*' or op.value == '/':
         return True
-    if op.index - 2 >= 0 and op.index + 2 < len(expr_list) and expr_list[op.index - 2].value == '(' and expr_list[op.index + 2].value == ')':
+    if op.index - 2 >= 0 and op.index + 2 < len(expr_list) \
+            and expr_list[op.index - 2].value == '(' and expr_list[op.index + 2].value == ')':
         return True
     return False
 
