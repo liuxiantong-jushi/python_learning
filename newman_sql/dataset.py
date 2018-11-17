@@ -10,49 +10,61 @@ Python 解析器对模块位置的搜索顺序是：
 """
 
 
+"""
+--------------------------------------------------------------------------------
+data_set
+--------------------------------------------------------------------------------
+"""
+
+
 class Record:
     def __init__(self, value_list):
         self.value_list = value_list
 
 
-class Dataset:
+class DataSet:
     def __init__(self, headers, records):
         self.headers = headers
         self.records = records
 
 
-class Tableset(Dataset):
-    def __init__(self, table,  records):
-        super.__init__(table.col_list, records)
-        self.table = table
+"""
+--------------------------------------------------------------------------------
+db_service
+--------------------------------------------------------------------------------
+develop plan:  
+- basic data structure
+- basic operation -- CURD
+- support normal form 1
+- SQL interpreter, support create/delete/select/where/update
+- SQL interpreter, support condition
+- SQL interpreter, support join
+- support normal form 2
+"""
 
 
 class DBService:
     def __init__(self):
-        self.talbe_schemas = []
-        self.tables = []
-        self.tablesets = []
+        self.table_schemas = {}
+        self.data_sets = []
+
+    def create_table(self, table):
+        self.table_schemas[table.name] = table
+        self.data_sets[table.name] = DataSet(table.col_list, [])
+
+    def del_table(self, table_name):
+        self.data_sets.pop(table_name)
+        self.table_schemas.pop(table_name)
+
+    def get_record_from_table(self, table_name):
+        return self.data_sets[table_name].records
+
+    def insert_record(self, table_name, records):
+        self.data_sets[table_name].add(records)
+
+    def del_record(self, table_name):
+        self.data_sets[table_name].records = []
 
 
-def create_table():
-    pass
 
 
-def del_table():
-    pass
-
-
-def get_record_from_table():
-    pass
-
-
-def filter_from_dataset():
-    pass
-
-
-def insert_record():
-    pass
-
-
-def del_record():
-    pass
